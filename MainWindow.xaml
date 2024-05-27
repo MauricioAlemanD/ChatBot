@@ -56,7 +56,7 @@
                 </Label>
             </Grid>
         </Border>
-        <Frame x:Name="f1" Content="Frame" Background="#FFB97171"/>
+        <MediaElement HorizontalAlignment="Left" Height="234" Margin="243,120,0,0" VerticalAlignment="Top" Width="379" Source="/UI.gif" Position="00:00:01" ScrubbingEnabled="True" Stretch="Fill" UnloadedBehavior="Play"/>
 
     </Grid>
 </Window>

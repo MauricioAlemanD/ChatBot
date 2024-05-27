@@ -13,7 +13,7 @@
 
 
     Private Sub Window_Loaded(sender As Object, e As RoutedEventArgs)
-        f1.Navigate(p1)
+
     End Sub
 
     Private Sub Border_MouseLeftButtonUp(sender As Object, e As MouseButtonEventArgs)
