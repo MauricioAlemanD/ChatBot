@@ -11,6 +11,8 @@
     <None Remove="LOGO.png" />
     <None Remove="new-message.png" />
     <None Remove="send.png" />
+    <None Remove="UI.gif" />
+    <None Remove="UI.mp4" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,6 +31,8 @@
     <Resource Include="LOGO.png" />
     <Resource Include="new-message.png" />
     <Resource Include="send.png" />
+    <Resource Include="UI.gif" />
+    <Resource Include="UI.mp4" />
   </ItemGroup>
 
 </Project>

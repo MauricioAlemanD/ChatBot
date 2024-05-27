@@ -224,7 +224,6 @@
                 </Border>
             </Grid>
         </Border>
-        <MediaElement HorizontalAlignment="Left" Height="193" Margin="532,310,0,0" VerticalAlignment="Top" Width="338" Source="UI.mp4" LoadedBehavior="Play"/>
 
     </Grid>
 </Window>

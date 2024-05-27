@@ -56,6 +56,7 @@
                 </Label>
             </Grid>
         </Border>
-        <MediaElement x:Name="video" Source="/UI.mp4" Margin="23,-11,25,-6" Position="00:00:00" MediaEnded="MediaElement_MediaEnded" UnloadedBehavior="Manual"/>
+        <Frame x:Name="f1" Content="Frame" Background="#FFB97171"/>
+
     </Grid>
 </Window>
