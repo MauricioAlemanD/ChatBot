@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ChatBot"
         mc:Ignorable="d" WindowStyle="None" AllowsTransparency="True" WindowState="Normal" Background="Transparent" WindowStartupLocation="CenterScreen"
-        Title="Inicio" Height="450" Width="800">
+        Title="Inicio" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
         <Border BorderBrush="#FFFEB5FF" BorderThickness="1" CornerRadius="20,20,20,20">
             <Border.Background>
@@ -35,7 +35,7 @@
                     </Border.RenderTransform>
                     <Label Content="INICIAR" Foreground="White" FontSize="24" FontFamily="Global User Interface" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Width="315" HorizontalContentAlignment="Center" MouseLeftButtonUp="Label_MouseLeftButtonUp"/>
                 </Border>
-                <Border BorderThickness="1" Margin="241,398,244,0" VerticalAlignment="Top" Height="42" RenderTransformOrigin="0.5,0.5" Background="Black" CornerRadius="10,10,10,10">
+                <Border BorderThickness="1" Margin="241,398,244,0" VerticalAlignment="Top" Height="42" RenderTransformOrigin="0.5,0.5" Background="Black" CornerRadius="10,10,10,10" MouseLeftButtonUp="Border_MouseLeftButtonUp">
                     <Border.Effect>
                         <DropShadowEffect Color="Black" Direction="0" Opacity="0.75" RenderingBias="Quality" ShadowDepth="0" BlurRadius="24"/>
                     </Border.Effect>
@@ -56,5 +56,6 @@
                 </Label>
             </Grid>
         </Border>
+        <MediaElement x:Name="video" Source="/UI.mp4" Margin="23,-11,25,-6" Position="00:00:00" MediaEnded="MediaElement_MediaEnded" UnloadedBehavior="Manual"/>
     </Grid>
 </Window>

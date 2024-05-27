@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:ChatBot"
         mc:Ignorable="d" WindowStyle="None" AllowsTransparency="True" WindowState="Normal" Background="Transparent" WindowStartupLocation="CenterScreen"
         Title="Ultimate ChatBot" Height="650" Width="1100">
-    <Grid>
-        <Border BorderBrush="#FFFEB5FF" BorderThickness="1" CornerRadius="20,20,20,20">
+    <Grid x:Name="MainGrid">
+        <Border x:Name="MainBorder" BorderBrush="#FFFEB5FF" BorderThickness="1" CornerRadius="20,20,20,20">
             <Border.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0,0">
                     <GradientStop Color="#FFD1A6E2" Offset="0.169"/>
@@ -16,7 +16,7 @@
                 </LinearGradientBrush>
 
             </Border.Background>
-            <Grid>
+            <Grid x:Name="CanvaGrid">
                 <Border x:Name="leftDocker" BorderThickness="1" Margin="10,10,841,10" CornerRadius="15,15,15,15">
                     <Border.Effect>
                         <DropShadowEffect Color="Black" Opacity="0.6" BlurRadius="10"/>
@@ -114,7 +114,10 @@
                                 </TextBox>
                             </Grid>
                         </Border>
-                        <Border x:Name="btnGuardar" BorderThickness="1" Margin="12,419,12,0" VerticalAlignment="Top" Height="42" RenderTransformOrigin="0.5,0.5" Background="#FF171313" CornerRadius="10,10,10,10">
+                        <Border x:Name="btnGuardar" BorderThickness="1" Margin="12,419,12,0" VerticalAlignment="Top" Height="42" RenderTransformOrigin="0.5,0.5" CornerRadius="10,10,10,10">
+                            <Border.Background>
+                                <SolidColorBrush Color="#FF10004A" Opacity="0.6"/>
+                            </Border.Background>
                             <Border.Effect>
                                 <DropShadowEffect Color="#FF121111" Direction="0" Opacity="0.75" RenderingBias="Quality" ShadowDepth="0" BlurRadius="24"/>
                             </Border.Effect>
@@ -139,9 +142,9 @@
                                 </LinearGradientBrush>
                             </Border.Background>
                         </Border>
-                        <Border x:Name="btnOrdenar" BorderThickness="1" Margin="10,510,14,0" VerticalAlignment="Top" Height="42" RenderTransformOrigin="0.5,0.5" Background="#FF2C0746" CornerRadius="10,10,10,10">
+                        <Border x:Name="btnOrdenar" BorderThickness="1" Margin="10,510,14,0" VerticalAlignment="Top" Height="42" RenderTransformOrigin="0.5,0.5" Background="#FF8445B1" CornerRadius="10,10,10,10">
                             <Border.Effect>
-                                <DropShadowEffect Color="#FF121111" Direction="0" Opacity="0.75" RenderingBias="Quality" ShadowDepth="0" BlurRadius="24"/>
+                                <DropShadowEffect Color="#FF8445B1" Direction="0" Opacity="0.75" RenderingBias="Quality" ShadowDepth="0" BlurRadius="24"/>
                             </Border.Effect>
                             <Border.RenderTransform>
                                 <TransformGroup>
@@ -155,9 +158,9 @@
                                 <Label Content="Ordenar" Foreground="White" FontSize="18" FontFamily="Bahnschrift" VerticalAlignment="Center" Margin="10,0,10,0" HorizontalAlignment="Center" FontWeight="Bold"/>
                             </Grid>
                         </Border>
-                        <Border x:Name="btnEditar" BorderThickness="1" Margin="10,566,14,0" VerticalAlignment="Top" Height="42" RenderTransformOrigin="0.5,0.5" Background="#FF61174A" CornerRadius="10,10,10,10">
+                        <Border x:Name="btnEditar" BorderThickness="1" Margin="10,574,14,0" VerticalAlignment="Top" Height="42" RenderTransformOrigin="0.5,0.5" Background="#FFB14991" CornerRadius="10,10,10,10">
                             <Border.Effect>
-                                <DropShadowEffect Color="#FF121111" Direction="0" Opacity="0.75" RenderingBias="Quality" ShadowDepth="0" BlurRadius="24"/>
+                                <DropShadowEffect Color="#FFB14991" Direction="0" Opacity="0.75" RenderingBias="Quality" ShadowDepth="0" BlurRadius="24"/>
                             </Border.Effect>
                             <Border.RenderTransform>
                                 <TransformGroup>
@@ -173,8 +176,55 @@
                         </Border>
                     </Grid>
                 </Border>
+                <Border x:Name="centerDocker" BorderThickness="1" Margin="288,10,10,10" CornerRadius="15,15,15,15">
+                    <Border.Effect>
+                        <DropShadowEffect Color="Black" Opacity="0.6" BlurRadius="10"/>
+                    </Border.Effect>
+                    <Border.Background>
+                        <SolidColorBrush Color="Black" Opacity="0.4"/>
+                    </Border.Background>
+                    <Grid x:Name="centDock">
+                        <Border x:Name="txtInput" BorderThickness="1" Margin="10,574,10,0" VerticalAlignment="Top" Height="42" RenderTransformOrigin="0.5,0.5" CornerRadius="10,10,10,10" BorderBrush="White">
+                            <Border.Background>
+                                <SolidColorBrush Color="White" Opacity="0.007"/>
+                            </Border.Background>
+                            <Border.Effect>
+                                <DropShadowEffect Color="#FFA7A7A7" Direction="0" Opacity="0.75" RenderingBias="Quality" ShadowDepth="0" BlurRadius="24"/>
+                            </Border.Effect>
+                            <Border.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleY="1"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Border.RenderTransform>
+                            <Grid>
+                                <TextBox TextWrapping="Wrap" Margin="10,0,54,0" FontFamily="Bahnschrift" FontSize="16" SelectionTextBrush="#FF351656" BorderThickness="0,0,0,0" MaxLines="1" Foreground="White">
+                                    <TextBox.Background>
+                                        <SolidColorBrush Color="White" Opacity="0"/>
+                                    </TextBox.Background>
+                                    <TextBox.SelectionBrush>
+                                        <SolidColorBrush Color="#FF7618C8" Opacity="1"/>
+                                    </TextBox.SelectionBrush>
+                                    <TextBox.BorderBrush>
+                                        <SolidColorBrush Color="#FFABADB3" Opacity="0"/>
+                                    </TextBox.BorderBrush>
+                                </TextBox>
+                                <Label Content="" HorizontalAlignment="Left" Margin="731,0,0,0" VerticalAlignment="Center" Width="35" Height="36">
+                                    <Label.Background>
+                                        <ImageBrush ImageSource="/send.png"/>
+                                    </Label.Background>
+                                </Label>
+                            </Grid>
+                        </Border>
+                        <Label Content="Tú: Hola mamá, ¿cómo te encuentras el día de hoy? Tengo una duda... ¿Qué prepararías de comer en un día &#xD;&#xA;tan caluroso?" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="#FFAFE3FF" FontFamily="Bahnschrift" FontWeight="Bold" FontSize="16" Height="69"/>
+                        <Label Content="Bot (Mamá Alicia): Hola hija, yo me encuentro de maravilla, yo te recomiendo preparar una comida fresca,&#xD;&#xA;como una ensalada de lechuga, espinaca y jitomate, acompañada de una pechuga de pollo empanizada." HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top" Foreground="#FFE49EFF" FontFamily="Bahnschrift" FontWeight="Bold" FontSize="16" Height="69"/>
+                    </Grid>
+                </Border>
             </Grid>
         </Border>
+        <MediaElement HorizontalAlignment="Left" Height="193" Margin="532,310,0,0" VerticalAlignment="Top" Width="338" Source="UI.mp4" LoadedBehavior="Play"/>
 
     </Grid>
 </Window>

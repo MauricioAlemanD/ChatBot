@@ -10,6 +10,7 @@
   <ItemGroup>
     <None Remove="LOGO.png" />
     <None Remove="new-message.png" />
+    <None Remove="send.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,6 +28,7 @@
   <ItemGroup>
     <Resource Include="LOGO.png" />
     <Resource Include="new-message.png" />
+    <Resource Include="send.png" />
   </ItemGroup>
 
 </Project>
