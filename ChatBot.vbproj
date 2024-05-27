@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <None Remove="assets\back.mp4" />
+    <None Remove="database.png" />
     <None Remove="fast-forward.png" />
     <None Remove="LOGO.png" />
     <None Remove="new-message.png" />
@@ -30,6 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="database.png" />
     <Resource Include="fast-forward.png" />
     <Resource Include="LOGO.png" />
     <Resource Include="new-message.png" />

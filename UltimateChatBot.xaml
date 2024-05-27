@@ -52,9 +52,9 @@
                             <Border.Effect>
                                 <DropShadowEffect Color="#FFA7A7A7" Direction="0" Opacity="0.75" RenderingBias="Quality" ShadowDepth="0" BlurRadius="24"/>
                             </Border.Effect>
-                            <Grid>
-                                <Label Content="Nueva conversación" Foreground="Black" FontSize="18" FontFamily="Bahnschrift SemiBold" VerticalAlignment="Center" Margin="43,0,-7,0"/>
-                                <Label Margin="6,2,176,2">
+                            <Grid Cursor="Hand">
+                                <Label Content="Nueva conversación" Foreground="Black" FontSize="18" FontFamily="Bahnschrift SemiBold" VerticalAlignment="Center" Margin="43,0,-7,0" Cursor="Hand" MouseLeftButtonUp="Label_MouseLeftButtonUp_1"/>
+                                <Label Margin="6,2,176,2" Cursor="Hand" MouseLeftButtonUp="Label_MouseLeftButtonUp_2">
                                     <Label.Background>
                                         <ImageBrush ImageSource="/new-message.png"/>
                                     </Label.Background>
@@ -116,7 +116,7 @@
                                 </TextBox>
                             </Grid>
                         </Border>
-                        <Border x:Name="btnGuardar" BorderThickness="1" Margin="12,419,12,0" VerticalAlignment="Top" Height="42" RenderTransformOrigin="0.5,0.5" CornerRadius="10,10,10,10">
+                        <Border x:Name="btnGuardar" BorderThickness="1" Margin="12,419,12,0" VerticalAlignment="Top" Height="42" RenderTransformOrigin="0.5,0.5" CornerRadius="10,10,10,10" Cursor="Hand">
                             <Border.Background>
                                 <SolidColorBrush Color="#FF10004A" Opacity="0.6"/>
                             </Border.Background>
@@ -124,7 +124,7 @@
                                 <DropShadowEffect Color="#FF121111" Direction="0" Opacity="0.75" RenderingBias="Quality" ShadowDepth="0" BlurRadius="24"/>
                             </Border.Effect>
                             <Grid>
-                                <Label Content="Guardar" Foreground="#FFFFBDBD" FontSize="18" FontFamily="Bahnschrift" VerticalAlignment="Center" Margin="10,0,10,0" HorizontalAlignment="Center" FontWeight="Bold"/>
+                                <Label Content="Guardar" Foreground="#FFFFBDBD" FontSize="18" FontFamily="Bahnschrift" VerticalAlignment="Center" Margin="10,0,10,0" HorizontalAlignment="Center" FontWeight="Bold" Cursor="Hand"/>
                             </Grid>
                         </Border>
                         <Border x:Name="separador_Copiar" BorderThickness="1" Margin="0,485,0,137" CornerRadius="15,15,15,15">
@@ -136,7 +136,7 @@
                                 </LinearGradientBrush>
                             </Border.Background>
                         </Border>
-                        <Border x:Name="btnOrdenar" BorderThickness="1" Margin="10,510,14,0" VerticalAlignment="Top" Height="42" RenderTransformOrigin="0.5,0.5" Background="#FF8445B1" CornerRadius="10,10,10,10">
+                        <Border x:Name="btnOrdenar" BorderThickness="1" Margin="10,510,14,0" VerticalAlignment="Top" Height="42" RenderTransformOrigin="0.5,0.5" Background="#FF8445B1" CornerRadius="10,10,10,10" Cursor="Hand">
                             <Border.Effect>
                                 <DropShadowEffect Color="#FF8445B1" Direction="0" Opacity="0.75" RenderingBias="Quality" ShadowDepth="0" BlurRadius="24"/>
                             </Border.Effect>
@@ -149,7 +149,7 @@
                                 </TransformGroup>
                             </Border.RenderTransform>
                             <Grid>
-                                <Label Content="Ordenar" Foreground="White" FontSize="18" FontFamily="Bahnschrift" VerticalAlignment="Center" Margin="10,0,10,0" HorizontalAlignment="Center" FontWeight="Bold"/>
+                                <Label Content="Ordenar" Foreground="White" FontSize="18" FontFamily="Bahnschrift" VerticalAlignment="Center" Margin="10,0,10,0" HorizontalAlignment="Center" FontWeight="Bold" Cursor="Hand"/>
                             </Grid>
                         </Border>
                         <Border x:Name="btnEditar" BorderThickness="1" Margin="10,574,14,0" VerticalAlignment="Top" Height="42" RenderTransformOrigin="0.5,0.5" Background="#FFB14991" CornerRadius="10,10,10,10">
@@ -165,7 +165,7 @@
                                 </TransformGroup>
                             </Border.RenderTransform>
                             <Grid>
-                                <Label Content="Editar" Foreground="White" FontSize="18" FontFamily="Bahnschrift" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" Width="219" HorizontalContentAlignment="Center" MouseLeftButtonUp="Label_MouseLeftButtonUp"/>
+                                <Label Content="Editar" Foreground="White" FontSize="18" FontFamily="Bahnschrift" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" Width="219" HorizontalContentAlignment="Center" MouseLeftButtonUp="Label_MouseLeftButtonUp" Cursor="Hand"/>
                             </Grid>
                         </Border>
                     </Grid>
@@ -205,7 +205,7 @@
                                         <SolidColorBrush Color="#FFABADB3" Opacity="0"/>
                                     </TextBox.BorderBrush>
                                 </TextBox>
-                                <Label x:Name="btnEnviar" Content="" HorizontalAlignment="Left" Margin="731,0,0,0" VerticalAlignment="Center" Width="35" Height="36">
+                                <Label x:Name="btnEnviar" Content="" HorizontalAlignment="Left" Margin="731,0,0,0" VerticalAlignment="Center" Width="35" Height="36" Cursor="Hand">
                                     <Label.Background>
                                         <ImageBrush ImageSource="/send.png"/>
                                     </Label.Background>
@@ -225,6 +225,21 @@
                                 </ListView>
                             </Grid>
                         </Border>
+                    </Grid>
+                </Border>
+                <Ellipse x:Name="BTNbd" Margin="1024,310,30,294" Fill="White" Cursor="Hand"/>
+                <Label x:Name="btnbd2" Content="" Margin="1035,321,41,305" Cursor="Hand">
+                    <Label.Background>
+                        <ImageBrush ImageSource="/database.png"/>
+                    </Label.Background>
+                </Label>
+                <Border x:Name="bdDocker" BorderBrush="White" BorderThickness="1" Margin="144,129,144,129" CornerRadius="20,20,20,20">
+                    <Border.Background>
+                        <SolidColorBrush Color="Black" Opacity="0.5"/>
+                    </Border.Background>
+                    <Grid x:Name="bdGrid">
+                        <Label x:Name="btnSair" Content="X" HorizontalAlignment="Left" Margin="777,10,0,0" VerticalAlignment="Top" Foreground="White" FontSize="14" FontFamily="Arial Black" Cursor="Hand"/>
+                        <TextBlock x:Name="txtBD" HorizontalAlignment="Center" Margin="0,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="320" Width="788"/>
                     </Grid>
                 </Border>
             </Grid>
