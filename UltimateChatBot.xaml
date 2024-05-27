@@ -5,17 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ChatBot"
         mc:Ignorable="d" WindowStyle="None" AllowsTransparency="True" WindowState="Normal" Background="Transparent" WindowStartupLocation="CenterScreen"
-        Title="Ultimate ChatBot" Height="650" Width="1100">
+        Title="Ultimate ChatBot" Height="650" Width="1100" Loaded="Window_Loaded">
+
+    <Window.Resources>
+
+        <Style x:Key="myHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Height" Value="0" />
+            <Setter Property="Width" Value="756"/>
+        </Style>
+        <Style x:Key="myRowStyle" TargetType="{x:Type ListViewItem}">
+            <Setter Property="FontFamily" Value="Bahnschrift"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="IsHitTestVisible" Value="False"/>
+        </Style>
+    </Window.Resources>
+
     <Grid x:Name="MainGrid">
-        <Border x:Name="MainBorder" BorderBrush="#FFFEB5FF" BorderThickness="1" CornerRadius="20,20,20,20">
-            <Border.Background>
+        <MediaElement x:Name="backg" Margin="0,-62,-73,-49" Source="A:\VisualBasic\ChatBot\assets\back.mp4" LoadedBehavior="Manual" UnloadedBehavior="Manual" MediaEnded="MediaElement_MediaEnded"/>
+        <Border x:Name="MainBorder" BorderBrush="Gold" BorderThickness="1">
+            <!--<Border.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0,0">
                     <GradientStop Color="#FFD1A6E2" Offset="0.169"/>
                     <GradientStop Color="#FF8849BF" Offset="0.4"/>
                     <GradientStop Color="#FFFF56F9" Offset="1"/>
                 </LinearGradientBrush>
 
-            </Border.Background>
+            </Border.Background>-->
             <Grid x:Name="CanvaGrid">
                 <Border x:Name="leftDocker" BorderThickness="1" Margin="10,10,841,10" CornerRadius="15,15,15,15">
                     <Border.Effect>
@@ -34,14 +51,6 @@
                             <Border.Effect>
                                 <DropShadowEffect Color="#FFA7A7A7" Direction="0" Opacity="0.75" RenderingBias="Quality" ShadowDepth="0" BlurRadius="24"/>
                             </Border.Effect>
-                            <Border.RenderTransform>
-                                <TransformGroup>
-                                    <ScaleTransform ScaleY="1"/>
-                                    <SkewTransform/>
-                                    <RotateTransform/>
-                                    <TranslateTransform/>
-                                </TransformGroup>
-                            </Border.RenderTransform>
                             <Grid>
                                 <Label Content="Nueva conversación" Foreground="Black" FontSize="18" FontFamily="Bahnschrift SemiBold" VerticalAlignment="Center" Margin="43,0,-7,0"/>
                                 <Label Margin="6,2,176,2">
@@ -92,14 +101,6 @@
                             <Border.Effect>
                                 <DropShadowEffect Color="#FFA7A7A7" Direction="0" Opacity="0.75" RenderingBias="Quality" ShadowDepth="0" BlurRadius="24"/>
                             </Border.Effect>
-                            <Border.RenderTransform>
-                                <TransformGroup>
-                                    <ScaleTransform ScaleY="1"/>
-                                    <SkewTransform/>
-                                    <RotateTransform/>
-                                    <TranslateTransform/>
-                                </TransformGroup>
-                            </Border.RenderTransform>
                             <Grid>
                                 <TextBox TextWrapping="Wrap" Margin="10,0,10,0" FontFamily="Bahnschrift" FontSize="16" SelectionTextBrush="#FF351656" BorderThickness="0,0,0,0" MaxLines="1">
                                     <TextBox.Background>
@@ -121,14 +122,6 @@
                             <Border.Effect>
                                 <DropShadowEffect Color="#FF121111" Direction="0" Opacity="0.75" RenderingBias="Quality" ShadowDepth="0" BlurRadius="24"/>
                             </Border.Effect>
-                            <Border.RenderTransform>
-                                <TransformGroup>
-                                    <ScaleTransform ScaleY="1"/>
-                                    <SkewTransform/>
-                                    <RotateTransform/>
-                                    <TranslateTransform/>
-                                </TransformGroup>
-                            </Border.RenderTransform>
                             <Grid>
                                 <Label Content="Guardar" Foreground="#FFFFBDBD" FontSize="18" FontFamily="Bahnschrift" VerticalAlignment="Center" Margin="10,0,10,0" HorizontalAlignment="Center" FontWeight="Bold"/>
                             </Grid>
@@ -171,7 +164,7 @@
                                 </TransformGroup>
                             </Border.RenderTransform>
                             <Grid>
-                                <Label Content="Editar" Foreground="White" FontSize="18" FontFamily="Bahnschrift" VerticalAlignment="Center" Margin="10,0,10,0" HorizontalAlignment="Center" FontWeight="Bold"/>
+                                <Label Content="Editar" Foreground="White" FontSize="18" FontFamily="Bahnschrift" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" Width="219" HorizontalContentAlignment="Center" MouseLeftButtonUp="Label_MouseLeftButtonUp"/>
                             </Grid>
                         </Border>
                     </Grid>
@@ -184,7 +177,7 @@
                         <SolidColorBrush Color="Black" Opacity="0.4"/>
                     </Border.Background>
                     <Grid x:Name="centDock">
-                        <Border x:Name="txtInput" BorderThickness="1" Margin="10,574,10,0" VerticalAlignment="Top" Height="42" RenderTransformOrigin="0.5,0.5" CornerRadius="10,10,10,10" BorderBrush="White">
+                        <Border x:Name="BtxtInput" BorderThickness="1" Margin="10,574,10,0" VerticalAlignment="Top" Height="42" RenderTransformOrigin="0.5,0.5" CornerRadius="10,10,10,10" BorderBrush="White">
                             <Border.Background>
                                 <SolidColorBrush Color="White" Opacity="0.007"/>
                             </Border.Background>
@@ -200,7 +193,7 @@
                                 </TransformGroup>
                             </Border.RenderTransform>
                             <Grid>
-                                <TextBox TextWrapping="Wrap" Margin="10,0,54,0" FontFamily="Bahnschrift" FontSize="16" SelectionTextBrush="#FF351656" BorderThickness="0,0,0,0" MaxLines="1" Foreground="White">
+                                <TextBox x:Name="txtInput" TextWrapping="Wrap" Margin="10,0,54,0" FontFamily="Bahnschrift" FontSize="16" SelectionTextBrush="#FF351656" BorderThickness="0,0,0,0" MaxLines="1" Foreground="White">
                                     <TextBox.Background>
                                         <SolidColorBrush Color="White" Opacity="0"/>
                                     </TextBox.Background>
@@ -211,15 +204,26 @@
                                         <SolidColorBrush Color="#FFABADB3" Opacity="0"/>
                                     </TextBox.BorderBrush>
                                 </TextBox>
-                                <Label Content="" HorizontalAlignment="Left" Margin="731,0,0,0" VerticalAlignment="Center" Width="35" Height="36">
+                                <Label x:Name="btnEnviar" Content="" HorizontalAlignment="Left" Margin="731,0,0,0" VerticalAlignment="Center" Width="35" Height="36">
                                     <Label.Background>
                                         <ImageBrush ImageSource="/send.png"/>
                                     </Label.Background>
                                 </Label>
+                                <ListView x:Name="lsvContenido" Margin="10,-561,10,59" Background="{x:Null}" BorderBrush="White" Foreground="Black" ItemContainerStyle="{StaticResource myRowStyle}" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+                                    <ListView.View>
+                                        <GridView>
+                                            <GridViewColumn Header="Chat" Width="756"  HeaderContainerStyle="{StaticResource myHeaderStyle}">
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Text="{Binding}" TextWrapping="Wrap" />
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
                             </Grid>
                         </Border>
-                        <Label Content="Tú: Hola mamá, ¿cómo te encuentras el día de hoy? Tengo una duda... ¿Qué prepararías de comer en un día &#xD;&#xA;tan caluroso?" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="#FFAFE3FF" FontFamily="Bahnschrift" FontWeight="Bold" FontSize="16" Height="69"/>
-                        <Label Content="Bot (Mamá Alicia): Hola hija, yo me encuentro de maravilla, yo te recomiendo preparar una comida fresca,&#xD;&#xA;como una ensalada de lechuga, espinaca y jitomate, acompañada de una pechuga de pollo empanizada." HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top" Foreground="#FFE49EFF" FontFamily="Bahnschrift" FontWeight="Bold" FontSize="16" Height="69"/>
                     </Grid>
                 </Border>
             </Grid>

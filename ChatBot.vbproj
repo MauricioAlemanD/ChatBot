@@ -8,6 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="assets\back.mp4" />
+    <None Remove="fast-forward.png" />
     <None Remove="LOGO.png" />
     <None Remove="new-message.png" />
     <None Remove="send.png" />
@@ -28,11 +30,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="fast-forward.png" />
     <Resource Include="LOGO.png" />
     <Resource Include="new-message.png" />
     <Resource Include="send.png" />
-    <Resource Include="UI.gif" />
-    <Resource Include="UI.mp4" />
+    <Content Include="assets\back.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="UI.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="UI.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

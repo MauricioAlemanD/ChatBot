@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ChatBot"
         mc:Ignorable="d" WindowStyle="None" AllowsTransparency="True" WindowState="Normal" Background="Transparent" WindowStartupLocation="CenterScreen"
-        Title="Inicio" Height="450" Width="800" Loaded="Window_Loaded">
+        Title="Inicio" Height="450" Width="761" Loaded="Window_Loaded">
     <Grid>
-        <Border BorderBrush="#FFFEB5FF" BorderThickness="1" CornerRadius="20,20,20,20">
+        <Border BorderBrush="#FFFEB5FF" BorderThickness="1">
             <Border.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0,0">
                     <GradientStop Color="#FF38004E"/>
@@ -16,12 +16,12 @@
 
             </Border.Background>
             <Grid>
-                <Label Content="ULTIMATE CHATBOT" Margin="0,167,0,0" Foreground="White" FontFamily="Lucida Console" FontSize="48" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <Label x:Name="lblTitulo" Content="ULTIMATE CHATBOT" Margin="0,167,0,0" Foreground="White" FontFamily="Lucida Console" FontSize="48" HorizontalAlignment="Center" VerticalAlignment="Top" d:IsHidden="True" Opacity="0">
                     <Label.Effect>
                         <DropShadowEffect Color="Violet"/>
                     </Label.Effect>
                 </Label>
-                <Border BorderThickness="1" Margin="241,338,244,0" VerticalAlignment="Top" Height="42" RenderTransformOrigin="0.5,0.5" Background="#FFE828AC" CornerRadius="10,10,10,10">
+                <Border x:Name="btnIniciar" BorderThickness="1" Margin="241,338,244,0" VerticalAlignment="Top" Height="42" RenderTransformOrigin="0.5,0.5" Background="#FFE828AC" CornerRadius="10,10,10,10" d:IsHidden="True" Opacity="0">
                     <Border.Effect>
                         <DropShadowEffect Color="#FFE828AC" Direction="0" Opacity="0.75" RenderingBias="Quality" ShadowDepth="0" BlurRadius="24"/>
                     </Border.Effect>
@@ -35,7 +35,7 @@
                     </Border.RenderTransform>
                     <Label Content="INICIAR" Foreground="White" FontSize="24" FontFamily="Global User Interface" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Width="315" HorizontalContentAlignment="Center" MouseLeftButtonUp="Label_MouseLeftButtonUp"/>
                 </Border>
-                <Border BorderThickness="1" Margin="241,398,244,0" VerticalAlignment="Top" Height="42" RenderTransformOrigin="0.5,0.5" Background="Black" CornerRadius="10,10,10,10" MouseLeftButtonUp="Border_MouseLeftButtonUp">
+                <Border x:Name="btnCerrar" BorderThickness="1" Margin="241,398,244,0" VerticalAlignment="Top" Height="42" RenderTransformOrigin="0.5,0.5" Background="Black" CornerRadius="10,10,10,10" MouseLeftButtonUp="Border_MouseLeftButtonUp" d:IsHidden="True" Opacity="0">
                     <Border.Effect>
                         <DropShadowEffect Color="Black" Direction="0" Opacity="0.75" RenderingBias="Quality" ShadowDepth="0" BlurRadius="24"/>
                     </Border.Effect>
@@ -49,14 +49,21 @@
                     </Border.RenderTransform>
                     <Label Content="CERRAR" Foreground="White" FontSize="24" FontFamily="Global User Interface" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
                 </Border>
-                <Label Margin="341,36,341,312">
+                <Label x:Name="Icono" Margin="341,36,341,312" d:IsHidden="True" Opacity="0">
                     <Label.Background>
                         <ImageBrush ImageSource="/LOGO.png"/>
                     </Label.Background>
                 </Label>
+                <MediaElement x:Name="video" Source="A:\VisualBasic\ChatBot\assets\UI.mp4" Margin="-96,-1,-96,-1" Height="450"/>
+                <Label x:Name="lblSkip" Margin="730,10,10,416" Cursor="Hand">
+                    <Label.Background>
+                        <ImageBrush ImageSource="/fast-forward.png"/>
+                    </Label.Background>
+                </Label>
+
             </Grid>
         </Border>
-        <MediaElement HorizontalAlignment="Left" Height="234" Margin="243,120,0,0" VerticalAlignment="Top" Width="379" Source="/UI.gif" Position="00:00:01" ScrubbingEnabled="True" Stretch="Fill" UnloadedBehavior="Play"/>
+        <!--<MediaElement x:Name="video" Source="A:\VisualBasic\ChatBot\assets\UI.mp4"/>-->
 
     </Grid>
 </Window>
