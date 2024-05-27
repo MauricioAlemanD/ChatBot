@@ -54,7 +54,8 @@
                         <ImageBrush ImageSource="/LOGO.png"/>
                     </Label.Background>
                 </Label>
-                <MediaElement x:Name="video" Source="A:\VisualBasic\ChatBot\assets\UI.mp4" Margin="-96,-1,-96,-1" Height="450"/>
+                <!--<MediaElement x:Name="video" Source="A:\VisualBasic\ChatBot\assets\UI.mp4" Margin="-96,-1,-96,-1" Height="450"/>-->
+                <MediaElement x:Name="video" Source="C:\Users\m4ury\OneDrive\Documentos\GitHub\ChatBot\ChatBot\assets\UI.mp4" Margin="-96,-1,-96,-1" Height="450"/>
                 <Label x:Name="lblSkip" Margin="730,10,10,416" Cursor="Hand">
                     <Label.Background>
                         <ImageBrush ImageSource="/fast-forward.png"/>
@@ -63,7 +64,5 @@
 
             </Grid>
         </Border>
-        <!--<MediaElement x:Name="video" Source="A:\VisualBasic\ChatBot\assets\UI.mp4"/>-->
-
     </Grid>
 </Window>

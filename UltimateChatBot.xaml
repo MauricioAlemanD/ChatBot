@@ -23,7 +23,8 @@
     </Window.Resources>
 
     <Grid x:Name="MainGrid">
-        <MediaElement x:Name="backg" Margin="0,-62,-73,-49" Source="A:\VisualBasic\ChatBot\assets\back.mp4" LoadedBehavior="Manual" UnloadedBehavior="Manual" MediaEnded="MediaElement_MediaEnded"/>
+        <!--<MediaElement x:Name="backg" Margin="0,-62,-73,-49" Source="A:\VisualBasic\ChatBot\assets\back.mp4" LoadedBehavior="Manual" UnloadedBehavior="Manual" MediaEnded="MediaElement_MediaEnded"/>-->
+        <MediaElement x:Name="backg" Margin="0,-62,-73,-49" Source="C:\Users\m4ury\OneDrive\Documentos\GitHub\ChatBot\ChatBot\assets\back.mp4" LoadedBehavior="Manual" UnloadedBehavior="Manual" MediaEnded="MediaElement_MediaEnded"/>
         <Border x:Name="MainBorder" BorderBrush="Gold" BorderThickness="1">
             <!--<Border.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0,0">
