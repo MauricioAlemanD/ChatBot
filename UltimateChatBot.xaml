@@ -43,7 +43,19 @@
                         <SolidColorBrush Color="Black" Opacity="0.4"/>
                     </Border.Background>
                     <Grid x:Name="leftDock">
-                        <Label Margin="25,22,25,516">
+                        <Border x:Name="dockControlL" BorderBrush="White" BorderThickness="1" Margin="48,40,145,540" CornerRadius="10,0,0,10" Visibility="Hidden">
+                            <Border.Background>
+                                <SolidColorBrush Color="Black" Opacity="0.2"/>
+                            </Border.Background>
+                            <Rectangle Margin="5,22,5,18" Fill="White"/>
+                        </Border>
+                        <Border x:Name="dockControlR" BorderBrush="White" BorderThickness="1" Margin="143,40,56,540" CornerRadius="0,10,10,0" Visibility="Hidden">
+                            <Border.Background>
+                                <SolidColorBrush Color="Black" Opacity="0.2"/>
+                            </Border.Background>
+                            <Label Content="X" Margin="4,-18,0,0" Foreground="White" FontSize="48" HorizontalAlignment="Left" FontWeight="SemiBold" HorizontalContentAlignment="Stretch" Height="63" VerticalAlignment="Top"/>
+                        </Border>
+                        <Label Margin="50,19,50,519" MouseEnter="Label_MouseEnter" MouseLeave="Label_MouseLeave">
                             <Label.Background>
                                 <ImageBrush ImageSource="/LOGO.png" Stretch="Uniform"/>
                             </Label.Background>

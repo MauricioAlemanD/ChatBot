@@ -79,4 +79,24 @@ Public Class UltimateChatBot
     Private Sub btnNuevaConversacion_MouseLeftButtonUp(sender As Object, e As MouseButtonEventArgs) Handles btnNuevaConversacion.MouseLeftButtonUp
         txtInput.Focus()
     End Sub
+
+    Private Sub Label_MouseEnter(sender As Object, e As MouseEventArgs)
+        dockControlL.Visibility = Visibility.Visible
+        dockControlR.Visibility = Visibility.Visible
+    End Sub
+
+    Private Sub Label_MouseLeave(sender As Object, e As MouseEventArgs)
+        dockControlL.Visibility = Visibility.Hidden
+        dockControlR.Visibility = Visibility.Hidden
+    End Sub
+
+    Private Sub dockControlR_MouseLeftButtonUp(sender As Object, e As MouseButtonEventArgs) Handles dockControlR.MouseLeftButtonUp
+        Me.Close()
+    End Sub
+
+    Private Sub dockControlL_MouseLeftButtonUp(sender As Object, e As MouseButtonEventArgs) Handles dockControlL.MouseLeftButtonUp
+        Me.WindowState = WindowState.Minimized
+
+
+    End Sub
 End Class
