@@ -7,7 +7,8 @@
         mc:Ignorable="d" WindowStyle="None" AllowsTransparency="True" WindowState="Normal" Background="Transparent" WindowStartupLocation="CenterScreen"
         Title="Inicio" Height="450" Width="761" Loaded="Window_Loaded">
     <Grid>
-        <MediaElement x:Name="backg" Margin="-94,-165,-95,-165" Source="C:\Users\m4ury\OneDrive\Documentos\GitHub\ChatBot\ChatBot\assets\back.mp4" LoadedBehavior="Manual" UnloadedBehavior="Manual" MediaEnded="MediaElement_MediaEnded"/>
+        <!--<MediaElement x:Name="backg" Margin="-94,-165,-95,-165" Source="C:\Users\m4ury\OneDrive\Documentos\GitHub\ChatBot\ChatBot\assets\back.mp4" LoadedBehavior="Manual" UnloadedBehavior="Manual" MediaEnded="MediaElement_MediaEnded"/>-->
+        <MediaElement x:Name="backg" Margin="-94,-165,-95,-165" Source="A:\VisualBasic\ChatBot\assets\back.mp4" LoadedBehavior="Manual" UnloadedBehavior="Manual" MediaEnded="MediaElement_MediaEnded"/>
         <Border BorderBrush="White" BorderThickness="1">
             <Border.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0,0" Opacity="0">
@@ -17,12 +18,12 @@
 
             </Border.Background>
             <Grid>
-                <Label x:Name="lblTitulo" Content="ULTIMATE CHATBOT" Margin="0,167,0,0" Foreground="White" FontFamily="Lucida Console" FontSize="48" HorizontalAlignment="Center" VerticalAlignment="Top" d:IsHidden="True" Opacity="0">
+                <Label x:Name="lblTitulo" Content="ULTIMATE CHATBOT" Margin="0,167,0,0" Foreground="White" FontFamily="Lucida Console" FontSize="48" HorizontalAlignment="Center" VerticalAlignment="Top" Opacity="0">
                     <Label.Effect>
                         <DropShadowEffect Color="Violet"/>
                     </Label.Effect>
                 </Label>
-                <Border x:Name="btnIniciar" BorderThickness="1" Margin="241,338,244,0" VerticalAlignment="Top" Height="42" RenderTransformOrigin="0.5,0.5" Background="#FFE828AC" CornerRadius="10,10,10,10" d:IsHidden="True" Opacity="0" Cursor="Hand">
+                <Border x:Name="btnIniciar" BorderThickness="1" Margin="241,338,244,0" VerticalAlignment="Top" Height="42" RenderTransformOrigin="0.5,0.5" Background="#FFE828AC" CornerRadius="10,10,10,10" Opacity="0" Cursor="Hand">
                     <Border.Effect>
                         <DropShadowEffect Color="#FFE828AC" Direction="0" Opacity="0.75" RenderingBias="Quality" ShadowDepth="0" BlurRadius="24"/>
                     </Border.Effect>
@@ -34,9 +35,9 @@
                             <TranslateTransform/>
                         </TransformGroup>
                     </Border.RenderTransform>
-                    <Label Content="INICIAR" Foreground="White" FontSize="24" FontFamily="Global User Interface" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Width="315" HorizontalContentAlignment="Center" MouseLeftButtonUp="Label_MouseLeftButtonUp" MouseEnter="Label_MouseEnter"/>
+                    <Label Content="INICIAR" Foreground="White" FontSize="24" FontFamily="Global User Interface" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Width="315" HorizontalContentAlignment="Center" MouseLeftButtonUp="Label_MouseLeftButtonUp" MouseEnter="Label_MouseEnter" MouseLeave="Label_MouseLeave"/>
                 </Border>
-                <Border x:Name="btnCerrar" BorderThickness="1" Margin="241,398,244,0" VerticalAlignment="Top" Height="42" RenderTransformOrigin="0.5,0.5" Background="Black" CornerRadius="10,10,10,10" d:IsHidden="True" Opacity="0" Cursor="Hand">
+                <Border x:Name="btnCerrar" BorderThickness="1" Margin="241,398,244,0" VerticalAlignment="Top" Height="42" RenderTransformOrigin="0.5,0.5" Background="Black" CornerRadius="10,10,10,10" Opacity="0" Cursor="Hand">
                     <Border.Effect>
                         <DropShadowEffect Color="Black" Direction="0" Opacity="0.75" RenderingBias="Quality" ShadowDepth="0" BlurRadius="24"/>
                     </Border.Effect>
@@ -48,15 +49,15 @@
                             <TranslateTransform/>
                         </TransformGroup>
                     </Border.RenderTransform>
-                    <Label Content="CERRAR" Foreground="White" FontSize="24" FontFamily="Global User Interface" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" MouseLeftButtonUp="Label_MouseLeftButtonUp_1"/>
+                    <Label x:Name="lblCerrar" Content="CERRAR" Foreground="White" FontSize="24" FontFamily="Global User Interface" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" MouseLeftButtonUp="Label_MouseLeftButtonUp_1" Width="274" HorizontalContentAlignment="Center"/>
                 </Border>
-                <Label x:Name="Icono" Margin="341,36,341,312" d:IsHidden="True" Opacity="0">
+                <Label x:Name="Icono" Margin="341,36,341,312" Opacity="0">
                     <Label.Background>
                         <ImageBrush ImageSource="/LOGO.png"/>
                     </Label.Background>
                 </Label>
-                <!--<MediaElement x:Name="video" Source="A:\VisualBasic\ChatBot\assets\UI.mp4" Margin="-96,-1,-96,-1" Height="450"/>-->
-                <MediaElement x:Name="video" Source="C:\Users\m4ury\OneDrive\Documentos\GitHub\ChatBot\ChatBot\assets\UI.mp4" Margin="-96,-1,-96,-1" Height="450" d:IsHidden="True"/>
+                <MediaElement x:Name="video" Source="A:\VisualBasic\ChatBot\assets\UI.mp4" Margin="-96,-1,-96,-1" Height="450" d:IsHidden="True"/>
+                <!--<MediaElement x:Name="video" Source="C:\Users\m4ury\OneDrive\Documentos\GitHub\ChatBot\ChatBot\assets\UI.mp4" Margin="-96,-1,-96,-1" Height="450" d:IsHidden="True"/>-->
                 <Label x:Name="lblSkip" Margin="730,10,10,416" Cursor="Hand">
                     <Label.Background>
                         <ImageBrush ImageSource="/fast-forward.png"/>

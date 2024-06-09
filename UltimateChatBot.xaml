@@ -20,11 +20,109 @@
             <Setter Property="Padding" Value="5"/>
             <Setter Property="IsHitTestVisible" Value="False"/>
         </Style>
+
+        <ControlTemplate x:Key="ComboBoxToggleButton" TargetType="ToggleButton">
+            <Border x:Name="Border" BorderThickness="1" CornerRadius="5" Background="White">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="20"/>
+                    </Grid.ColumnDefinitions>
+                    <ContentPresenter Grid.Column="0" HorizontalAlignment="Left" Margin="4" VerticalAlignment="Center" Content="{TemplateBinding Content}"/>
+                    <Polygon Grid.Column="1" Fill="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Points="0,0 10,0 5,5"/>
+                </Grid>
+            </Border>
+        </ControlTemplate>
+
+        <!-- Plantilla del TextBox -->
+        <ControlTemplate x:Key="ComboBoxTextBox" TargetType="TextBox">
+            <Border x:Name="PART_ContentHost" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" CornerRadius="5" Background="White"/>
+        </ControlTemplate>
+
+        <!-- Estilo para el ComboBox -->
+        <Style TargetType="ComboBox">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="4"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid>
+                            <ToggleButton Name="ToggleButton"
+                                          Template="{StaticResource ComboBoxToggleButton}"
+                                          Grid.Column="2"
+                                          Focusable="False"
+                                          IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, 
+                                                      RelativeSource={RelativeSource TemplatedParent}}"
+                                          ClickMode="Press">
+                            </ToggleButton>
+                            <ContentPresenter Name="ContentSite"
+                                              IsHitTestVisible="False"
+                                              Content="{TemplateBinding SelectionBoxItem}"
+                                              ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                              ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                              Margin="3,3,23,3"
+                                              VerticalAlignment="Center"
+                                              HorizontalAlignment="Left">
+                            </ContentPresenter>
+                            <TextBox x:Name="PART_EditableTextBox"
+                                     Style="{x:Null}"
+                                     Template="{StaticResource ComboBoxTextBox}"
+                                     HorizontalAlignment="Left"
+                                     VerticalAlignment="Center"
+                                     Margin="3,3,23,3"
+                                     Focusable="True"
+                                     Visibility="Hidden"
+                                     IsReadOnly="{TemplateBinding IsReadOnly}"/>
+                            <Popup Name="Popup"
+                                   Placement="Bottom"
+                                   IsOpen="{TemplateBinding IsDropDownOpen}"
+                                   AllowsTransparency="True"
+                                   Focusable="False"
+                                   PopupAnimation="Slide">
+                                <Grid Name="DropDown"
+                                      SnapsToDevicePixels="True"
+                                      MinWidth="{TemplateBinding ActualWidth}"
+                                      MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                    <Border x:Name="DropDownBorder"
+                                            BorderThickness="1"
+                                            BorderBrush="White"
+                                            CornerRadius="5" Background="White"/>
+                                    <ScrollViewer Margin="4,6,4,6"
+                                                  SnapsToDevicePixels="True">
+                                        <StackPanel IsItemsHost="True"
+                                                    KeyboardNavigation.DirectionalNavigation="Contained"/>
+                                    </ScrollViewer>
+                                </Grid>
+                            </Popup>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="HasItems" Value="False">
+                                <Setter TargetName="DropDownBorder" Property="MinHeight" Value="95"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Foreground" Value="Black"/>
+                            </Trigger>
+                            <Trigger Property="IsGrouping" Value="True">
+                                <Setter Property="ScrollViewer.CanContentScroll" Value="False"/>
+                            </Trigger>
+                            <Trigger SourceName="Popup" Property="Popup.AllowsTransparency" Value="True">
+                                <Setter TargetName="DropDownBorder" Property="CornerRadius" Value="5"/>
+                                <Setter TargetName="DropDownBorder" Property="Margin" Value="0,0,0,0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
     </Window.Resources>
 
     <Grid x:Name="MainGrid">
-        <!--<MediaElement x:Name="backg" Margin="0,-62,-73,-49" Source="A:\VisualBasic\ChatBot\assets\back.mp4" LoadedBehavior="Manual" UnloadedBehavior="Manual" MediaEnded="MediaElement_MediaEnded"/>-->
-        <MediaElement x:Name="backg" Margin="0,-62,-73,-49" Source="C:\Users\m4ury\OneDrive\Documentos\GitHub\ChatBot\ChatBot\assets\back.mp4" LoadedBehavior="Manual" UnloadedBehavior="Manual" MediaEnded="MediaElement_MediaEnded"/>
+        <MediaElement x:Name="backg" Margin="0,-62,-73,-49" Source="A:\VisualBasic\ChatBot\assets\back.mp4" LoadedBehavior="Manual" UnloadedBehavior="Manual" MediaEnded="MediaElement_MediaEnded"/>
+        <!--<MediaElement x:Name="backg" Margin="0,-62,-73,-49" Source="C:\Users\m4ury\OneDrive\Documentos\GitHub\ChatBot\ChatBot\assets\back.mp4" LoadedBehavior="Manual" UnloadedBehavior="Manual" MediaEnded="MediaElement_MediaEnded"/>-->
         <Border x:Name="MainBorder" BorderBrush="Gold" BorderThickness="1">
             <!--<Border.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0,0">
@@ -47,13 +145,13 @@
                             <Border.Background>
                                 <SolidColorBrush Color="Black" Opacity="0.2"/>
                             </Border.Background>
-                            <Rectangle Margin="5,22,5,18" Fill="White"/>
+                            <Rectangle Margin="5,22,5,18" Fill="White" MouseLeftButtonUp="Rectangle_MouseLeftButtonUp"/>
                         </Border>
-                        <Border x:Name="dockControlR" BorderBrush="White" BorderThickness="1" Margin="143,40,56,540" CornerRadius="0,10,10,0" Visibility="Hidden">
+                        <Border x:Name="dockControlR" BorderBrush="White" BorderThickness="1" Margin="143,40,56,540" CornerRadius="0,10,10,0" ScrollViewer.VerticalScrollBarVisibility="Hidden" Visibility="Hidden">
                             <Border.Background>
                                 <SolidColorBrush Color="Black" Opacity="0.2"/>
                             </Border.Background>
-                            <Label Content="X" Margin="4,-18,0,0" Foreground="White" FontSize="48" HorizontalAlignment="Left" FontWeight="SemiBold" HorizontalContentAlignment="Stretch" Height="63" VerticalAlignment="Top"/>
+                            <Label Content="X" Margin="4,-18,0,0" Foreground="White" FontSize="48" HorizontalAlignment="Left" FontWeight="SemiBold" HorizontalContentAlignment="Stretch" Height="63" VerticalAlignment="Top" MouseLeftButtonUp="Label_MouseLeftButtonUp_4"/>
                         </Border>
                         <Label Margin="50,19,50,519" MouseEnter="Label_MouseEnter" MouseLeave="Label_MouseLeave">
                             <Label.Background>
@@ -65,7 +163,7 @@
                                 <DropShadowEffect Color="#FFA7A7A7" Direction="0" Opacity="0.75" RenderingBias="Quality" ShadowDepth="0" BlurRadius="24"/>
                             </Border.Effect>
                             <Grid Cursor="Hand">
-                                <Label Content="Nueva conversación" Foreground="Black" FontSize="18" FontFamily="Bahnschrift SemiBold" VerticalAlignment="Center" Margin="43,0,-7,0" Cursor="Hand" MouseLeftButtonUp="Label_MouseLeftButtonUp_1"/>
+                                <Label Content="Nueva conversación" Foreground="Black" FontSize="18" FontFamily="Bahnschrift SemiBold" VerticalAlignment="Center" Margin="43,0,0,0" Cursor="Hand" MouseLeftButtonUp="Label_MouseLeftButtonUp_1"/>
                                 <Label Margin="6,2,176,2" Cursor="Hand" MouseLeftButtonUp="Label_MouseLeftButtonUp_2">
                                     <Label.Background>
                                         <ImageBrush ImageSource="/new-message.png"/>
@@ -82,63 +180,101 @@
                                 </LinearGradientBrush>
                             </Border.Background>
                         </Border>
-                        <Label x:Name="lblClave" Content="Clave" Foreground="White" FontSize="18" FontFamily="Bahnschrift SemiBold" VerticalAlignment="Top" Margin="0,210,0,0" HorizontalAlignment="Center" Width="221"/>
-                        <Border x:Name="txtClave" BorderThickness="1" Margin="12,247,12,0" VerticalAlignment="Top" Height="42" RenderTransformOrigin="0.5,0.5" Background="White" CornerRadius="10,10,10,10">
-                            <Border.Effect>
-                                <DropShadowEffect Color="#FFA7A7A7" Direction="0" Opacity="0.75" RenderingBias="Quality" ShadowDepth="0" BlurRadius="24"/>
-                            </Border.Effect>
-                            <Border.RenderTransform>
-                                <TransformGroup>
-                                    <ScaleTransform ScaleY="1"/>
-                                    <SkewTransform/>
-                                    <RotateTransform/>
-                                    <TranslateTransform/>
-                                </TransformGroup>
-                            </Border.RenderTransform>
-                            <Grid>
-                                <TextBox TextWrapping="Wrap" Margin="10,0,10,0" FontFamily="Bahnschrift" FontSize="16" SelectionTextBrush="#FF351656" BorderThickness="0,0,0,0" MaxLines="1">
-                                    <TextBox.Background>
-                                        <SolidColorBrush Color="White" Opacity="0"/>
-                                    </TextBox.Background>
-                                    <TextBox.SelectionBrush>
-                                        <SolidColorBrush Color="#FF7618C8" Opacity="1"/>
-                                    </TextBox.SelectionBrush>
-                                    <TextBox.BorderBrush>
-                                        <SolidColorBrush Color="#FFABADB3" Opacity="0"/>
-                                    </TextBox.BorderBrush>
-                                </TextBox>
-                            </Grid>
-                        </Border>
-                        <Label x:Name="lblClave_Copiar" Content="Respuesta" Foreground="White" FontSize="18" FontFamily="Bahnschrift SemiBold" VerticalAlignment="Top" Margin="0,307,0,0" HorizontalAlignment="Center" Width="221"/>
-                        <Border x:Name="txtClave_Copiar" BorderThickness="1" Margin="12,345,12,0" VerticalAlignment="Top" Height="42" RenderTransformOrigin="0.5,0.5" Background="White" CornerRadius="10,10,10,10">
-                            <Border.Effect>
-                                <DropShadowEffect Color="#FFA7A7A7" Direction="0" Opacity="0.75" RenderingBias="Quality" ShadowDepth="0" BlurRadius="24"/>
-                            </Border.Effect>
-                            <Grid>
-                                <TextBox TextWrapping="Wrap" Margin="10,0,10,0" FontFamily="Bahnschrift" FontSize="16" SelectionTextBrush="#FF351656" BorderThickness="0,0,0,0" MaxLines="1">
-                                    <TextBox.Background>
-                                        <SolidColorBrush Color="White" Opacity="0"/>
-                                    </TextBox.Background>
-                                    <TextBox.SelectionBrush>
-                                        <SolidColorBrush Color="#FF7618C8" Opacity="1"/>
-                                    </TextBox.SelectionBrush>
-                                    <TextBox.BorderBrush>
-                                        <SolidColorBrush Color="#FFABADB3" Opacity="0"/>
-                                    </TextBox.BorderBrush>
-                                </TextBox>
-                            </Grid>
-                        </Border>
-                        <Border x:Name="btnGuardar" BorderThickness="1" Margin="12,419,12,0" VerticalAlignment="Top" Height="42" RenderTransformOrigin="0.5,0.5" CornerRadius="10,10,10,10" Cursor="Hand">
-                            <Border.Background>
-                                <SolidColorBrush Color="#FF10004A" Opacity="0.6"/>
-                            </Border.Background>
-                            <Border.Effect>
-                                <DropShadowEffect Color="#FF121111" Direction="0" Opacity="0.75" RenderingBias="Quality" ShadowDepth="0" BlurRadius="24"/>
-                            </Border.Effect>
-                            <Grid>
-                                <Label Content="Guardar" Foreground="#FFFFBDBD" FontSize="18" FontFamily="Bahnschrift" VerticalAlignment="Center" Margin="10,0,10,0" HorizontalAlignment="Center" FontWeight="Bold" Cursor="Hand"/>
-                            </Grid>
-                        </Border>
+                        <Grid x:Name="nueva_clave" HorizontalAlignment="Center" Height="251" Margin="0,210,0,0" VerticalAlignment="Top" Visibility="Hidden">
+                            <Label x:Name="lblClave" Content="Clave" Foreground="White" FontSize="18" FontFamily="Bahnschrift SemiBold" VerticalAlignment="Top" HorizontalAlignment="Center" Width="221"/>
+                            <Border x:Name="txtClave" BorderThickness="1" Margin="0,37,0,0" VerticalAlignment="Top" Height="42" RenderTransformOrigin="0.5,0.5" Background="White" CornerRadius="10,10,10,10">
+                                <Border.Effect>
+                                    <DropShadowEffect Color="#FFA7A7A7" Direction="0" Opacity="0.75" RenderingBias="Quality" ShadowDepth="0" BlurRadius="24"/>
+                                </Border.Effect>
+                                <Border.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleY="1"/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Border.RenderTransform>
+                                <Grid>
+                                    <TextBox x:Name="txtRclave" TextWrapping="Wrap" Margin="10,0,10,0" FontFamily="Bahnschrift" FontSize="16" SelectionTextBrush="#FF351656" BorderThickness="0,0,0,0" MaxLines="1">
+                                        <TextBox.Background>
+                                            <SolidColorBrush Color="White" Opacity="0"/>
+                                        </TextBox.Background>
+                                        <TextBox.SelectionBrush>
+                                            <SolidColorBrush Color="#FF7618C8" Opacity="1"/>
+                                        </TextBox.SelectionBrush>
+                                        <TextBox.BorderBrush>
+                                            <SolidColorBrush Color="#FFABADB3" Opacity="0"/>
+                                        </TextBox.BorderBrush>
+                                    </TextBox>
+                                </Grid>
+                            </Border>
+                            <Label x:Name="lblClave_Copiar" Content="Respuesta" Foreground="White" FontSize="18" FontFamily="Bahnschrift SemiBold" VerticalAlignment="Top" Margin="0,97,0,0" HorizontalAlignment="Center" Width="221"/>
+                            <Border x:Name="txtClave_Copiar" BorderThickness="1" Margin="0,135,0,0" VerticalAlignment="Top" Height="42" RenderTransformOrigin="0.5,0.5" Background="White" CornerRadius="10,10,10,10">
+                                <Border.Effect>
+                                    <DropShadowEffect Color="#FFA7A7A7" Direction="0" Opacity="0.75" RenderingBias="Quality" ShadowDepth="0" BlurRadius="24"/>
+                                </Border.Effect>
+                                <Grid>
+                                    <TextBox x:Name="txtRrespuesta" TextWrapping="Wrap" Margin="10,0,10,0" FontFamily="Bahnschrift" FontSize="16" SelectionTextBrush="#FF351656" BorderThickness="0,0,0,0" MaxLines="1">
+                                        <TextBox.Background>
+                                            <SolidColorBrush Color="White" Opacity="0"/>
+                                        </TextBox.Background>
+                                        <TextBox.SelectionBrush>
+                                            <SolidColorBrush Color="#FF7618C8" Opacity="1"/>
+                                        </TextBox.SelectionBrush>
+                                        <TextBox.BorderBrush>
+                                            <SolidColorBrush Color="#FFABADB3" Opacity="0"/>
+                                        </TextBox.BorderBrush>
+                                    </TextBox>
+                                </Grid>
+                            </Border>
+                            <Border x:Name="btnGuardar" BorderThickness="1" Margin="0,209,0,0" VerticalAlignment="Top" Height="42" RenderTransformOrigin="0.5,0.5" CornerRadius="10,10,10,10" Cursor="Hand">
+                                <Border.Background>
+                                    <SolidColorBrush Color="#FF10004A" Opacity="0.6"/>
+                                </Border.Background>
+                                <Border.Effect>
+                                    <DropShadowEffect Color="#FF121111" Direction="0" Opacity="0.75" RenderingBias="Quality" ShadowDepth="0" BlurRadius="24"/>
+                                </Border.Effect>
+                                <Grid>
+                                    <Label Content="Guardar" Foreground="#FFFFBDBD" FontSize="18" FontFamily="Bahnschrift" VerticalAlignment="Center" Margin="10,0,10,0" HorizontalAlignment="Center" FontWeight="Bold" Cursor="Hand" MouseLeftButtonUp="Label_MouseLeftButtonUp_3"/>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                        <Grid x:Name="clave_existente" HorizontalAlignment="Center" Height="251" Margin="0,210,0,0" VerticalAlignment="Top" Visibility="Hidden">
+                            <Label x:Name="lblClave1" Content="Clave" Foreground="White" FontSize="18" FontFamily="Bahnschrift SemiBold" VerticalAlignment="Top" HorizontalAlignment="Center" Width="221"/>
+                            <Label x:Name="lblClave_Copiar1" Content="Respuesta" Foreground="White" FontSize="18" FontFamily="Bahnschrift SemiBold" VerticalAlignment="Top" Margin="0,97,0,0" HorizontalAlignment="Center" Width="221"/>
+                            <Border x:Name="txtClave_Copiar1" BorderThickness="1" Margin="0,135,0,0" VerticalAlignment="Top" Height="42" RenderTransformOrigin="0.5,0.5" Background="White" CornerRadius="10,10,10,10">
+                                <Border.Effect>
+                                    <DropShadowEffect Color="#FFA7A7A7" Direction="0" Opacity="0.75" RenderingBias="Quality" ShadowDepth="0" BlurRadius="24"/>
+                                </Border.Effect>
+                                <Grid>
+                                    <TextBox x:Name="txtRrespuestaExistente" TextWrapping="Wrap" Margin="10,0,10,0" FontFamily="Bahnschrift" FontSize="16" SelectionTextBrush="#FF351656" BorderThickness="0,0,0,0" MaxLines="1">
+                                        <TextBox.Background>
+                                            <SolidColorBrush Color="White" Opacity="0"/>
+                                        </TextBox.Background>
+                                        <TextBox.SelectionBrush>
+                                            <SolidColorBrush Color="#FF7618C8" Opacity="1"/>
+                                        </TextBox.SelectionBrush>
+                                        <TextBox.BorderBrush>
+                                            <SolidColorBrush Color="#FFABADB3" Opacity="0"/>
+                                        </TextBox.BorderBrush>
+                                    </TextBox>
+                                </Grid>
+                            </Border>
+                            <Border x:Name="btnGuardar1" BorderThickness="1" Margin="0,209,0,0" VerticalAlignment="Top" Height="42" RenderTransformOrigin="0.5,0.5" CornerRadius="10,10,10,10" Cursor="Hand">
+                                <Border.Background>
+                                    <SolidColorBrush Color="#FF10004A" Opacity="0.6"/>
+                                </Border.Background>
+                                <Border.Effect>
+                                    <DropShadowEffect Color="#FF121111" Direction="0" Opacity="0.75" RenderingBias="Quality" ShadowDepth="0" BlurRadius="24"/>
+                                </Border.Effect>
+                                <Grid>
+                                    <Label x:Name="btnGuardarResClvEx" Content="Guardar" Foreground="#FFFFBDBD" FontSize="18" FontFamily="Bahnschrift" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" Cursor="Hand" Width="219" HorizontalContentAlignment="Center"/>
+                                </Grid>
+                            </Border>
+                            <ComboBox x:Name="cmbClavesChat" Margin="0,32,0,183" BorderBrush="{x:Null}" FontFamily="Bahnschrift SemiBold">
+
+                            </ComboBox>
+                        </Grid>
                         <Border x:Name="separador_Copiar" BorderThickness="1" Margin="0,485,0,137" CornerRadius="15,15,15,15">
                             <Border.Background>
                                 <LinearGradientBrush StartPoint="1,0" EndPoint="0,0" Opacity="0.7">
@@ -180,8 +316,41 @@
                                 <Label Content="Editar" Foreground="White" FontSize="18" FontFamily="Bahnschrift" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" Width="219" HorizontalContentAlignment="Center" MouseLeftButtonUp="Label_MouseLeftButtonUp" Cursor="Hand"/>
                             </Grid>
                         </Border>
+                        <Grid x:Name="botonesClave" Height="124" VerticalAlignment="Top" Margin="12,274,-12,0">
+                            <Border x:Name="btnNuevaCalve" BorderThickness="1" Margin="0,0,24,0" VerticalAlignment="Top" Height="42" RenderTransformOrigin="0.5,0.5" Background="White" CornerRadius="10,10,10,10">
+                                <Border.Effect>
+                                    <DropShadowEffect Color="#FFA7A7A7" Direction="0" Opacity="0.75" RenderingBias="Quality" ShadowDepth="0" BlurRadius="24"/>
+                                </Border.Effect>
+                                <Grid Cursor="Hand">
+                                    <Label x:Name="lblNuevaClave" Content="Usar nueva clave" Foreground="Black" FontSize="18" FontFamily="Bahnschrift SemiBold" VerticalAlignment="Center" Margin="43,0,0,0" Cursor="Hand"/>
+                                    <Label x:Name="IcoNuevaClave" Margin="6,4,181,4" Cursor="Hand">
+                                        <Label.Background>
+                                            <ImageBrush ImageSource="/plus.png"/>
+                                        </Label.Background>
+                                    </Label>
+                                </Grid>
+                            </Border>
+                            <Border x:Name="btnClaveExistente" BorderThickness="1" Margin="0,82,24,0" VerticalAlignment="Top" Height="42" RenderTransformOrigin="0.5,0.5" Background="White" CornerRadius="10,10,10,10">
+                                <Border.Effect>
+                                    <DropShadowEffect Color="#FFA7A7A7" Direction="0" Opacity="0.75" RenderingBias="Quality" ShadowDepth="0" BlurRadius="24"/>
+                                </Border.Effect>
+                                <Grid Cursor="Hand">
+                                    <Label x:Name="lblCalveExistente" Content="Usar clave existente" Foreground="Black" FontSize="18" FontFamily="Bahnschrift SemiBold" VerticalAlignment="Center" Margin="43,0,0,0" Cursor="Hand"/>
+                                    <Label x:Name="icoCalveExistente" Margin="6,2,176,2" Cursor="Hand">
+                                        <Label.Background>
+                                            <ImageBrush ImageSource="/hierarchy-structure.png"/>
+                                        </Label.Background>
+                                    </Label>
+                                </Grid>
+                            </Border>
+                        </Grid>
                     </Grid>
                 </Border>
+                <Label x:Name="lblRegresar" Margin="205,211,864,414" Visibility="Hidden" Cursor="Hand">
+                    <Label.Background>
+                        <ImageBrush ImageSource="/right-arrow.png" Stretch="Uniform"/>
+                    </Label.Background>
+                </Label>
                 <Border x:Name="centerDocker" BorderThickness="1" Margin="288,10,10,10" CornerRadius="15,15,15,15">
                     <Border.Effect>
                         <DropShadowEffect Color="Black" Opacity="0.6" BlurRadius="10"/>
@@ -245,13 +414,35 @@
                         <ImageBrush ImageSource="/database.png"/>
                     </Label.Background>
                 </Label>
-                <Border x:Name="bdDocker" BorderBrush="White" BorderThickness="1" Margin="144,129,144,129" CornerRadius="20,20,20,20">
+                <Border x:Name="bdDocker" BorderBrush="White" BorderThickness="1" Margin="278,109,10,149" CornerRadius="20,20,20,20" d:IsHidden="True">
                     <Border.Background>
                         <SolidColorBrush Color="Black" Opacity="0.5"/>
                     </Border.Background>
                     <Grid x:Name="bdGrid">
                         <Label x:Name="btnSair" Content="X" HorizontalAlignment="Left" Margin="777,10,0,0" VerticalAlignment="Top" Foreground="White" FontSize="14" FontFamily="Arial Black" Cursor="Hand"/>
-                        <TextBlock x:Name="txtBD" HorizontalAlignment="Center" Margin="0,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="320" Width="788"/>
+                        <DataGrid x:Name="dgvDatos" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="35,23,78,39" BorderBrush="{x:Null}" Foreground="White" IsSynchronizedWithCurrentItem="True" Background="{x:Null}" IsReadOnly="True" HorizontalGridLinesBrush="White" VerticalGridLinesBrush="White">
+                            <DataGrid.Resources>
+                                <Style TargetType="{x:Type DataGridColumnHeader}">
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Setter Property="IsEnabled" Value="False"/>
+                                    <Setter Property="TextBlock.Width" Value="100"/>
+                                    <Setter Property="HorizontalAlignment" Value="Left"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                                <Style TargetType="{x:Type DataGridRowHeader}">
+                                    <Setter Property="IsEnabled" Value="False"/>
+                                    <Setter Property="Background" Value="Transparent"/>
+                                </Style>
+                                <Style TargetType="{x:Type DataGridRow}">
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                </Style>
+                            </DataGrid.Resources>
+                        </DataGrid>
                     </Grid>
                 </Border>
             </Grid>

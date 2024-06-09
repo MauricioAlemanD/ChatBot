@@ -34,6 +34,8 @@ Class MainWindow
         btnCerrar.Visibility = Visibility.Visible
         Icono.Visibility = Visibility.Visible
         video.Visibility = Visibility.Hidden
+
+        lblSkip.Visibility = Visibility.Hidden
     End Sub
 
     Private Sub Label_MouseLeftButtonUp_1(sender As Object, e As MouseButtonEventArgs)
@@ -47,5 +49,23 @@ Class MainWindow
 
     Private Sub Label_MouseEnter(sender As Object, e As MouseEventArgs)
         'color de hover
+
+        btnIniciar.Background = New SolidColorBrush(ColorConverter.ConvertFromString("#FFEF7BCB"))
+    End Sub
+
+    Private Sub btnIniciar_MouseEnter(sender As Object, e As MouseEventArgs) Handles btnIniciar.MouseEnter
+
+    End Sub
+
+    Private Sub Label_MouseLeave(sender As Object, e As MouseEventArgs)
+        btnIniciar.Background = New SolidColorBrush(ColorConverter.ConvertFromString("#FFE828AC"))
+    End Sub
+
+    Private Sub lblCerrar_MouseEnter(sender As Object, e As MouseEventArgs) Handles lblCerrar.MouseEnter
+        btnCerrar.Background = New SolidColorBrush(ColorConverter.ConvertFromString("#FF252525"))
+    End Sub
+
+    Private Sub lblCerrar_MouseLeave(sender As Object, e As MouseEventArgs) Handles lblCerrar.MouseLeave
+        btnCerrar.Background = New SolidColorBrush(ColorConverter.ConvertFromString("#FF000000"))
     End Sub
 End Class
