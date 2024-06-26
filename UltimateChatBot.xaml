@@ -297,7 +297,7 @@
                                 </TransformGroup>
                             </Border.RenderTransform>
                             <Grid>
-                                <Label Content="Ordenar" Foreground="White" FontSize="18" FontFamily="Bahnschrift" VerticalAlignment="Center" Margin="10,0,10,0" HorizontalAlignment="Center" FontWeight="Bold" Cursor="Hand"/>
+                                <Label x:Name="btnOrdenar1" Content="Ordenar" Foreground="White" FontSize="18" FontFamily="Bahnschrift" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" Cursor="Hand" Width="219" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
                             </Grid>
                         </Border>
                         <Border x:Name="btnEditar" BorderThickness="1" Margin="10,574,14,0" VerticalAlignment="Top" Height="42" RenderTransformOrigin="0.5,0.5" Background="#FFB14991" CornerRadius="10,10,10,10">
@@ -313,7 +313,7 @@
                                 </TransformGroup>
                             </Border.RenderTransform>
                             <Grid>
-                                <Label Content="Editar" Foreground="White" FontSize="18" FontFamily="Bahnschrift" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" Width="219" HorizontalContentAlignment="Center" MouseLeftButtonUp="Label_MouseLeftButtonUp" Cursor="Hand"/>
+                                <Label x:Name="btnEditar1" Content="Editar" Foreground="White" FontSize="18" FontFamily="Bahnschrift" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" Width="219" HorizontalContentAlignment="Center" Cursor="Hand"/>
                             </Grid>
                         </Border>
                         <Grid x:Name="botonesClave" Height="124" VerticalAlignment="Top" Margin="12,274,-12,0">
@@ -341,6 +341,65 @@
                                             <ImageBrush ImageSource="/hierarchy-structure.png"/>
                                         </Label.Background>
                                     </Label>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                        <Grid x:Name="editar_clave" HorizontalAlignment="Center" Height="251" Margin="0,210,0,0" VerticalAlignment="Top" Visibility="Hidden">
+                            <Label x:Name="lblClave2" Content="Clave" Foreground="White" FontSize="18" FontFamily="Bahnschrift SemiBold" VerticalAlignment="Top" HorizontalAlignment="Center" Width="221"/>
+                            <Border x:Name="txtClaveEditarh" BorderThickness="1" Margin="0,37,0,0" VerticalAlignment="Top" Height="42" RenderTransformOrigin="0.5,0.5" Background="White" CornerRadius="10,10,10,10">
+                                <Border.Effect>
+                                    <DropShadowEffect Color="#FFA7A7A7" Direction="0" Opacity="0.75" RenderingBias="Quality" ShadowDepth="0" BlurRadius="24"/>
+                                </Border.Effect>
+                                <Border.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleY="1"/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Border.RenderTransform>
+                                <Grid>
+                                    <TextBox x:Name="txtCalveEditar" TextWrapping="Wrap" Margin="10,0,10,0" FontFamily="Bahnschrift" FontSize="16" SelectionTextBrush="#FF351656" BorderThickness="0,0,0,0" MaxLines="1">
+                                        <TextBox.Background>
+                                            <SolidColorBrush Color="White" Opacity="0"/>
+                                        </TextBox.Background>
+                                        <TextBox.SelectionBrush>
+                                            <SolidColorBrush Color="#FF7618C8" Opacity="1"/>
+                                        </TextBox.SelectionBrush>
+                                        <TextBox.BorderBrush>
+                                            <SolidColorBrush Color="#FFABADB3" Opacity="0"/>
+                                        </TextBox.BorderBrush>
+                                    </TextBox>
+                                </Grid>
+                            </Border>
+                            <Label x:Name="lblClave_Copiar2" Content="Respuesta" Foreground="White" FontSize="18" FontFamily="Bahnschrift SemiBold" VerticalAlignment="Top" Margin="0,97,0,0" HorizontalAlignment="Center" Width="221"/>
+                            <Border x:Name="txtClave_Copiar2" BorderThickness="1" Margin="0,135,0,0" VerticalAlignment="Top" Height="42" RenderTransformOrigin="0.5,0.5" Background="White" CornerRadius="10,10,10,10">
+                                <Border.Effect>
+                                    <DropShadowEffect Color="#FFA7A7A7" Direction="0" Opacity="0.75" RenderingBias="Quality" ShadowDepth="0" BlurRadius="24"/>
+                                </Border.Effect>
+                                <Grid>
+                                    <TextBox x:Name="txtRrespuestaEditar" TextWrapping="Wrap" Margin="10,0,10,0" FontFamily="Bahnschrift" FontSize="16" SelectionTextBrush="#FF351656" BorderThickness="0,0,0,0" MaxLines="1">
+                                        <TextBox.Background>
+                                            <SolidColorBrush Color="White" Opacity="0"/>
+                                        </TextBox.Background>
+                                        <TextBox.SelectionBrush>
+                                            <SolidColorBrush Color="#FF7618C8" Opacity="1"/>
+                                        </TextBox.SelectionBrush>
+                                        <TextBox.BorderBrush>
+                                            <SolidColorBrush Color="#FFABADB3" Opacity="0"/>
+                                        </TextBox.BorderBrush>
+                                    </TextBox>
+                                </Grid>
+                            </Border>
+                            <Border x:Name="btnGuardar2" BorderThickness="1" Margin="0,209,0,0" VerticalAlignment="Top" Height="42" RenderTransformOrigin="0.5,0.5" CornerRadius="10,10,10,10" Cursor="Hand">
+                                <Border.Background>
+                                    <SolidColorBrush Color="#FF10004A" Opacity="0.6"/>
+                                </Border.Background>
+                                <Border.Effect>
+                                    <DropShadowEffect Color="#FF121111" Direction="0" Opacity="0.75" RenderingBias="Quality" ShadowDepth="0" BlurRadius="24"/>
+                                </Border.Effect>
+                                <Grid>
+                                    <Label x:Name="btnEditarCalveRespuesta" Content="Guardar" Foreground="#FFFFBDBD" FontSize="18" FontFamily="Bahnschrift" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" Cursor="Hand" Width="199" HorizontalContentAlignment="Center"/>
                                 </Grid>
                             </Border>
                         </Grid>

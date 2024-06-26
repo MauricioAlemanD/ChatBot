@@ -6,7 +6,7 @@ Imports System.Text.RegularExpressions
 
 
 Public Class UltimateChatBot
-
+    Dim bdbd As Boolean
     Private items As ObservableCollection(Of String)
 
     Public Sub New()
@@ -143,6 +143,7 @@ Public Class UltimateChatBot
     End Sub
 
     Private Sub bdDocker_IsVisibleChanged(sender As Object, e As DependencyPropertyChangedEventArgs) Handles bdDocker.IsVisibleChanged
+
         Conexion.sentenciaSQL = "select claves.id_clave, texto_clave, respuesta from claves inner join respuestas on claves.id_clave = respuestas.id_clave"
         Conexion.conectar()
         Conexion.tablaSQL = New DataTable
@@ -216,6 +217,7 @@ Public Class UltimateChatBot
         lblRegresar.Visibility = Visibility.Hidden
         clave_existente.Visibility = Visibility.Hidden
         nueva_clave.Visibility = Visibility.Hidden
+        editar_clave.Visibility = Visibility.Hidden
 
     End Sub
 
@@ -280,5 +282,66 @@ Public Class UltimateChatBot
         Conexion.adaptadorSQL.Fill(tablaSQL)
         dgvDatos.ItemsSource = Conexion.tablaSQL.DefaultView
         Conexion.conexionGeneral.Close()
+    End Sub
+
+    Private Sub txtInput_PreviewKeyDown(sender As Object, e As KeyEventArgs) Handles txtInput.PreviewKeyDown
+        If txtInput.Text <> "" Then
+            If e.Key = Key.Enter Then
+                llenar()
+            End If
+        End If
+    End Sub
+
+    Private Sub btnEditar1_MouseLeftButtonUp(sender As Object, e As MouseButtonEventArgs) Handles btnEditar1.MouseLeftButtonUp
+        nueva_clave.Visibility = Visibility.Hidden
+        botonesClave.Visibility = Visibility.Hidden
+        editar_clave.Visibility = Visibility.Visible
+        lblRegresar.Visibility = Visibility.Visible
+    End Sub
+
+    Private Sub btnEditarCalveRespuesta_MouseLeftButtonUp(sender As Object, e As MouseButtonEventArgs) Handles btnEditarCalveRespuesta.MouseLeftButtonUp
+        Dim clave As String
+        Dim respuesta As String
+        Dim respuesta_editar As String
+        Dim id_clave As Integer
+
+        clave = txtCalveEditar.Text
+        respuesta_editar = txtRrespuestaEditar.Text
+
+
+        Conexion.sentenciaSQL = "select claves.id_clave, respuesta from claves inner join respuestas on claves.id_clave = respuestas.id_clave where claves.texto_clave = '" & clave & "'"
+        Conexion.conectar()
+        Conexion.comandoSQL = New SqlCommand(Conexion.sentenciaSQL, Conexion.conexionGeneral)
+        Conexion.lectorSQL = Conexion.comandoSQL.ExecuteReader
+        While Conexion.lectorSQL.Read
+            id_clave = Conexion.lectorSQL(0)
+            respuesta = Conexion.lectorSQL(1)
+        End While
+        Conexion.conexionGeneral.Close()
+
+        Conexion.sentenciaSQL = "UPDATE [dbo].[respuestas] SET [respuesta] = '" & respuesta_editar & "'  WHERE id_clave =" & id_clave & " and respuesta = '" & respuesta & "'"
+        Conexion.conectar()
+        Conexion.comandoSQL = New SqlCommand(sentenciaSQL, conexionGeneral)
+        Conexion.respuestaSQL = Conexion.comandoSQL.ExecuteNonQuery
+        Conexion.conexionGeneral.Close()
+
+
+
+
+
+    End Sub
+
+    Private Sub btnOrdenar1_MouseLeftButtonUp(sender As Object, e As MouseButtonEventArgs) Handles btnOrdenar1.MouseLeftButtonUp
+        If bdDocker.Visibility = Visibility.Visible Then
+
+            Conexion.sentenciaSQL = "select claves.id_clave, texto_clave, respuesta from claves inner join respuestas on claves.id_clave = respuestas.id_clave ORDER BY claves.id_clave ASC"
+            Conexion.conectar()
+            Conexion.tablaSQL = New DataTable
+            Conexion.adaptadorSQL = New SqlDataAdapter(sentenciaSQL, conexionGeneral)
+            Conexion.adaptadorSQL.Fill(tablaSQL)
+            dgvDatos.ItemsSource = Conexion.tablaSQL.DefaultView
+            Conexion.conexionGeneral.Close()
+
+        End If
     End Sub
 End Class
